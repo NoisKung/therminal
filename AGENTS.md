@@ -48,8 +48,16 @@ so the fork can still rebase onto upstream Ghostty.
 | `LICENSE` (`Copyright (c) 2024 Mitchell Hashimoto`) | MIT requires the notice be retained |
 | `src/build/Ghostty*.zig`, Xcode target/product `Ghostty.app` | Internal names; the Xcode target rename also touches `TEST_HOST`, `nix/package.nix`, and CI, and cannot be verified without a build |
 
-Verify after any branding change: `ghostty_*` and `GHOSTTY_*` occurrence counts must stay at
-**2,635** and **3,745**. If they move, a symbol was renamed by accident.
+Verify after any branding change — this must print nothing:
+
+```sh
+git diff <baseline>..HEAD -- '*.zig' '*.c' '*.h' '*.swift' \
+  | grep -E '^[-+]' | grep -E 'ghostty_[a-z]|GHOSTTY_[A-Z]'
+```
+
+Do **not** verify by counting `grep -r` occurrences across the repo: `CLAUDE.md` is a symlink
+so its contents get counted twice, and this file itself contains the tokens. The diff above is
+the only reliable check.
 
 ---
 
