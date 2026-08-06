@@ -16,11 +16,17 @@ pub fn init(
     errdefer steps.deinit(b.allocator);
 
     const manpages = [_]struct {
+        /// Internal entrypoint name. Concatenated into the `mdgen_<name>_<section>`
+        /// member of Config.ExeEntrypoint, which main.zig maps to
+        /// src/build/mdgen/main_<name>_<section>.zig. Renaming this requires
+        /// renaming those too, so it stays "ghostty" — see CLAUDE.md §1a.
         name: []const u8,
+        /// Installed file name. This is brand-facing (`man therminal`).
+        output: []const u8,
         section: []const u8,
     }{
-        .{ .name = "therminal", .section = "1" },
-        .{ .name = "therminal", .section = "5" },
+        .{ .name = "ghostty", .output = "therminal", .section = "1" },
+        .{ .name = "ghostty", .output = "therminal", .section = "5" },
     };
 
     inline for (manpages) |manpage| {
@@ -54,7 +60,7 @@ pub fn init(
 
         try steps.append(b.allocator, &b.addInstallFile(
             markdown_output,
-            "share/ghostty/doc/" ++ manpage.name ++ "." ++ manpage.section ++ ".md",
+            "share/therminal/doc/" ++ manpage.output ++ "." ++ manpage.section ++ ".md",
         ).step);
 
         const generate_html = b.addSystemCommand(&.{"pandoc"});
@@ -69,7 +75,7 @@ pub fn init(
 
         try steps.append(b.allocator, &b.addInstallFile(
             generate_html.captureStdOut(.{}),
-            "share/ghostty/doc/" ++ manpage.name ++ "." ++ manpage.section ++ ".html",
+            "share/therminal/doc/" ++ manpage.output ++ "." ++ manpage.section ++ ".html",
         ).step);
 
         const generate_manpage = b.addSystemCommand(&.{"pandoc"});
@@ -84,7 +90,7 @@ pub fn init(
 
         try steps.append(b.allocator, &b.addInstallFile(
             generate_manpage.captureStdOut(.{}),
-            "share/man/man" ++ manpage.section ++ "/" ++ manpage.name ++ "." ++ manpage.section,
+            "share/man/man" ++ manpage.section ++ "/" ++ manpage.output ++ "." ++ manpage.section,
         ).step);
     }
 
