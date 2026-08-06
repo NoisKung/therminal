@@ -154,10 +154,10 @@ test "cache directory paths" {
         {
             const cache_path = try cache(io, alloc, &environ_map, .{
                 .home = mock_home,
-                .subdir = "ghostty",
+                .subdir = "therminal",
             });
             defer alloc.free(cache_path);
-            const expected = try std.fs.path.join(alloc, &.{ mock_home, ".cache", "ghostty" });
+            const expected = try std.fs.path.join(alloc, &.{ mock_home, ".cache", "therminal" });
             defer alloc.free(expected);
             try testing.expectEqualStrings(expected, cache_path);
         }
@@ -230,13 +230,13 @@ test "fallback when xdg env empty and subdir" {
         const expected = try std.fs.path.join(alloc, &[_][]const u8{
             temp_home,
             case.default_subdir,
-            "ghostty",
+            "therminal",
         });
         defer alloc.free(expected);
 
         // Test with empty string - should fallback to home
         try environ_map.put(case.name, "");
-        const actual = try case.func(io, alloc, &environ_map, .{ .subdir = "ghostty" });
+        const actual = try case.func(io, alloc, &environ_map, .{ .subdir = "therminal" });
         defer alloc.free(actual);
 
         try std.testing.expectEqualStrings(expected, actual);

@@ -88,7 +88,7 @@ pub fn resourcesDir(alloc: Allocator) !ResourcesDir {
                     "Contents/Resources",
                     sentinel,
                 )) |v| {
-                    return .{ .app_path = try std.fs.path.join(alloc, &.{ v, "ghostty" }) };
+                    return .{ .app_path = try std.fs.path.join(alloc, &.{ v, "therminal" }) };
                 }
             }
         }
@@ -103,7 +103,7 @@ pub fn resourcesDir(alloc: Allocator) !ResourcesDir {
                 if (builtin.target.os.tag == .freebsd) "local/share" else "share",
                 sentinel,
             )) |v| {
-                return .{ .app_path = try std.fs.path.join(alloc, &.{ v, "ghostty" }) };
+                return .{ .app_path = try std.fs.path.join(alloc, &.{ v, "therminal" }) };
             }
         }
     }

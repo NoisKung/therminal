@@ -12,20 +12,44 @@ two agent entrypoints silently diverge.
 **therminal** is a Thai-first fork of [Ghostty](https://ghostty.org), tracking upstream
 `1.3.2-dev`.
 
-The full Ghostty tree (~5,900 files) is **present on disk but almost entirely uncommitted**:
-only 36 files are tracked by git (the root-level config and docs from
-`34b90e4 Initial import: Ghostty project skeleton`). `src/`, `macos/`, `pkg/`, `test/`, and
-the rest are untracked.
+The full upstream tree is committed as a clean baseline in
+`ab193ac Import full Ghostty 1.3.2-dev source tree` — unmodified, so any later diff against
+it shows exactly what this fork changed. Branding changes live on top of that commit.
 
-Practical consequences:
-
-- **Do not assume `git` reflects the working tree.** `git status`, `git diff`, and any
-  review flow will not show source changes until the tree is committed. Verify with the
-  filesystem, not with git, until this is resolved.
 - **`zig` is not installed** on this machine. `build.zig.zon` requires **Zig ≥ 0.16.0**.
-  No build or test command below can run until it is.
-- The fork point against upstream is not recorded anywhere. Establish it before the first
-  substantive change, or rebasing onto upstream Ghostty later becomes guesswork.
+  No build or test command in §3 has been executed or verified.
+
+---
+
+## 1a. Naming — what was renamed, and what deliberately was not
+
+The product is **Therminal**. The rename was deliberately confined to the **brand surface**
+so the fork can still rebase onto upstream Ghostty.
+
+**Renamed (user-visible):**
+
+| Thing | Value |
+| --- | --- |
+| Binary / command | `therminal` (`src/build/GhosttyExe.zig`) |
+| Bundle & app ID | `com.therminal.app` (`src/build_config.zig:58`, macOS, flatpak, metainfo) |
+| macOS display name | `Therminal` (`INFOPLIST_KEY_CFBundleDisplayName`) |
+| Config dir | `~/.config/therminal/` (`src/os/xdg.zig`) |
+| Resource dirs | `share/therminal/{themes,shell-integration}` |
+| Docs | `README.md`, `CONTRIBUTING.md`, `PACKAGING.md`, `HACKING.md`, `AI_POLICY.md` |
+
+**Deliberately NOT renamed — do not "finish the job" on these:**
+
+| Thing | Why |
+| --- | --- |
+| `ghostty_*` / `GHOSTTY_*` C symbols (6,380 uses) | Renaming makes every upstream merge conflict on nearly every file |
+| `include/ghostty/`, `libghostty`, `libghostty-vt` | Public C API; downstream consumers depend on it |
+| `TERM=xterm-ghostty` + `src/terminfo/` | Remote hosts already ship this terminfo entry; renaming breaks SSH sessions |
+| `ghostty.org`, `github.com/ghostty-org`, `deps.files.ghostty.org` | Real hosts — `build.zig.zon` downloads from them; editing breaks the build |
+| `LICENSE` (`Copyright (c) 2024 Mitchell Hashimoto`) | MIT requires the notice be retained |
+| `src/build/Ghostty*.zig`, Xcode target/product `Ghostty.app` | Internal names; the Xcode target rename also touches `TEST_HOST`, `nix/package.nix`, and CI, and cannot be verified without a build |
+
+Verify after any branding change: `ghostty_*` and `GHOSTTY_*` occurrence counts must stay at
+**2,635** and **3,745**. If they move, a symbol was renamed by accident.
 
 ---
 
@@ -48,7 +72,7 @@ therminal perfect does not fix them. The only mechanism that can is OSC 66 — s
 All require Zig ≥ 0.16.0, which is not yet installed.
 
 | Task | Command |
-|---|---|
+| --- | --- |
 | Build | `zig build` |
 | Build, skip macOS app bundle (much faster) | `zig build -Demit-macos-app=false` |
 | Test — full suite, slow | `zig build test` |
@@ -111,7 +135,7 @@ Thai combining marks are category **`Mn`, zero advance width**, and they *stack*
 **one cell can legitimately hold three codepoints**:
 
 | Text | Meaning | Codepoints | `Mn` | Cells |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | `ที่` | at | 3 | 2 | **1** |
 | `ปุ่ม` | button | 4 | 2 | 2 |
 | `น้ำ` | water | 3 | 1 | 2 |

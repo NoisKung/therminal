@@ -69,7 +69,7 @@ while still marking the string for translation. For strings that are stored
 untranslated and translated later, prefer `i18n.N_`.
 
 All translatable strings are extracted into the _translation template file_,
-located under `po/com.mitchellh.ghostty.pot`. **This file must stay in sync with
+located under `po/com.therminal.app.pot`. **This file must stay in sync with
 the list of translatable strings present in source code or Blueprints at all times.**
 A CI action would be run for every PR, which checks if the translation template
 requires any updates. You can update the translation template by running
@@ -77,7 +77,7 @@ requires any updates. You can update the translation template by running
 for other locales (`.po` files) to reflect the state of the template file.
 
 During the build process, each locale in `.po` files is compiled
-into binary `.mo` files, stored under `share/locale/<LOCALE>/LC_MESSAGES/com.mitchellh.ghostty.mo`.
+into binary `.mo` files, stored under `share/locale/<LOCALE>/LC_MESSAGES/com.therminal.app.mo`.
 This can be directly accessed by `libintl`, which provide the various `gettext`
 C functions that can be called either by Zig code directly, or by the GTK builder
 (recommended).

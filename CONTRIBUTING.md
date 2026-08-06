@@ -1,14 +1,14 @@
-# Contributing to Ghostty
+# Contributing to Therminal
 
-This document describes the process of contributing to Ghostty. It is intended
+This document describes the process of contributing to Therminal. It is intended
 for anyone considering opening an **issue**, **discussion** or **pull request**.
-For people who are interested in developing Ghostty and technical details behind
-it, please check out our ["Developing Ghostty"](HACKING.md) document as well.
+For people who are interested in developing Therminal and technical details behind
+it, please check out our ["Developing Therminal"](HACKING.md) document as well.
 
 > [!NOTE]
 >
 > I'm sorry for the wall of text. I'm not trying to be difficult and I do
-> appreciate your contributions. Ghostty is a personal project for me that
+> appreciate your contributions. Therminal is a personal project for me that
 > I maintain in my free time. If you're expecting me to dedicate my personal
 > time to fixing bugs, maintaining features, and reviewing code, I do kindly
 > ask you spend a few minutes reading this document. Thank you. ❤️
@@ -26,7 +26,7 @@ that understanding. Be sure to read the [AI Usage Policy](AI_POLICY.md).
 
 ## AI Usage
 
-The Ghostty project has strict rules for AI usage. Please see
+The Therminal project has strict rules for AI usage. Please see
 the [AI Usage Policy](AI_POLICY.md). **This is very important.**
 
 ## First-Time Contributors
@@ -34,7 +34,7 @@ the [AI Usage Policy](AI_POLICY.md). **This is very important.**
 We use a vouch system for first-time contributors:
 
 1. Open a
-   [discussion in the "Vouch Request"](https://github.com/ghostty-org/ghostty/discussions/new?category=vouch-request)
+   [discussion in the "Vouch Request"](https://github.com/ghostty-org/therminal/discussions/new?category=vouch-request)
    category describing what you want to change and why. Follow the template.
 2. Keep it concise
 3. Write in your own voice, don't have an AI write this
@@ -49,7 +49,7 @@ plausible-looking but actually low-quality contributions.
 
 ## Contributors Prior to the Vouch System
 
-If you contributed to Ghostty prior to the introduction
+If you contributed to Therminal prior to the introduction
 of the vouch system and wish to continue contributing, you were not
 automatically added to the [list of vouched users](.github/VOUCHED.td). You will need to follow the same
 process as a first-time contributor to be vouched.
@@ -74,12 +74,12 @@ working on it. Thank you. If you need help or guidance, comment on the issue.
 Issues that are extra friendly to new contributors are tagged with
 ["contributor friendly"].
 
-["contributor friendly"]: https://github.com/ghostty-org/ghostty/issues?q=is%3Aissue%20is%3Aopen%20label%3A%22contributor%20friendly%22
+["contributor friendly"]: https://github.com/ghostty-org/therminal/issues?q=is%3Aissue%20is%3Aopen%20label%3A%22contributor%20friendly%22
 
-### I'd like to translate Ghostty to my language
+### I'd like to translate Therminal to my language
 
 We have written a [Translator's Guide](po/README_TRANSLATORS.md) for
-everyone interested in contributing translations to Ghostty.
+everyone interested in contributing translations to Therminal.
 Translations usually do not need to go through the process of issue triage
 and you can submit pull requests directly, although please make sure that
 our [Style Guide](po/README_TRANSLATORS.md#style-guide) is followed before
@@ -117,9 +117,9 @@ maintainers to figure out important details about your setup.
 > Because of this, please make sure that you _only_ use the "Issue Triage"
 > category for reporting bugs — thank you!
 
-[closed issues]: https://github.com/ghostty-org/ghostty/issues?q=is%3Aissue%20state%3Aclosed
-[discussions]: https://github.com/ghostty-org/ghostty/discussions?discussions_q=is%3Aclosed
-["Issue Triage"]: https://github.com/ghostty-org/ghostty/discussions/new?category=issue-triage
+[closed issues]: https://github.com/ghostty-org/therminal/issues?q=is%3Aissue%20state%3Aclosed
+[discussions]: https://github.com/ghostty-org/therminal/discussions?discussions_q=is%3Aclosed
+["Issue Triage"]: https://github.com/ghostty-org/therminal/discussions/new?category=issue-triage
 
 ### I have an idea for a feature
 
@@ -127,7 +127,7 @@ Like bug reports, first search through both issues and discussions and try to
 find if your feature has already been requested. Otherwise, open a discussion
 in the ["Feature Requests, Ideas"] category.
 
-["Feature Requests, Ideas"]: https://github.com/ghostty-org/ghostty/discussions/new?category=feature-requests-ideas
+["Feature Requests, Ideas"]: https://github.com/ghostty-org/therminal/discussions/new?category=feature-requests-ideas
 
 ### I've implemented a feature
 
@@ -142,13 +142,13 @@ Open an [Q&A discussion], or join our [Discord Server] and ask away in the
 `#help` forum channel.
 
 Do not use the `#terminals` or `#development` channels to ask for help —
-those are for general discussion about terminals and Ghostty development
+those are for general discussion about terminals and Therminal development
 respectively. If you do ask a question there, you will be redirected to
 `#help` instead.
 
 > [!NOTE]
 > If your question is about a missing feature, please open a discussion under
-> the ["Feature Requests, Ideas"] category. If Ghostty is behaving
+> the ["Feature Requests, Ideas"] category. If Therminal is behaving
 > unexpectedly, use the ["Issue Triage"] category.
 >
 > The "Q&A" category is strictly for other kinds of discussions and do not
@@ -159,19 +159,19 @@ respectively. If you do ask a question there, you will be redirected to
 > Therefore, please **pay attention to the category** before opening
 > discussions to save us all some time and energy. Thank you!
 
-[Q&A discussion]: https://github.com/ghostty-org/ghostty/discussions/new?category=q-a
-[Discord Server]: https://discord.gg/ghostty
+[Q&A discussion]: https://github.com/ghostty-org/therminal/discussions/new?category=q-a
+[Discord Server]: https://discord.gg/therminal
 
 ## General Patterns
 
 ### Issues are Actionable
 
-The Ghostty [issue tracker](https://github.com/ghostty-org/ghostty/issues)
+The Therminal [issue tracker](https://github.com/ghostty-org/therminal/issues)
 is for _actionable items_.
 
-Unlike some other projects, Ghostty **does not use the issue tracker for
+Unlike some other projects, Therminal **does not use the issue tracker for
 discussion or feature requests**. Instead, we use GitHub
-[discussions](https://github.com/ghostty-org/ghostty/discussions) for that.
+[discussions](https://github.com/ghostty-org/therminal/discussions) for that.
 Once a discussion reaches a point where a well-understood, actionable
 item is identified, it is moved to the issue tracker. **This pattern
 makes it easier for maintainers or contributors to find issues to work on
